@@ -60,6 +60,18 @@ pipeline {
         }
     }
 
+    post {
+    always {
+        echo "Result: ${result}" 
+        echo "Job name: ${JOB_NAME}" 
+        echo "Build number: ${BUILD_NUMBER}"
+        echo "Duration: ${duration}" 
+
+
+       // archiveArtifacts artifacts: 'job_data.txt', onlyIfSuccessful: false
+    }
+}
+
     // post {
     //     failure {
     //         mail to: 'sanjeev.ks@kine.ai, pooja.b@kine.ai',
