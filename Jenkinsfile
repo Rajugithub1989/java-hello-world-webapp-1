@@ -6,15 +6,15 @@ pipeline {
     //}
 
     stages {
-        stage('Load common-pipeline script') {
-            steps {
-                checkout([$class: 'GitSCM',
-                    branches: [[name: 'master']],
-                    userRemoteConfigs: [[credentialsId: 'Multiple-repos-commits-with-one-pipeline',
-                    url: 'https://github.com/Rajugithub1989/Common-Pipeline.git']]])
-                    load 'common-pipeline.groovy'
-            }
-        }
+        // stage('Load common-pipeline script') {
+        //     steps {
+        //         checkout([$class: 'GitSCM',
+        //             branches: [[name: 'master']],
+        //             userRemoteConfigs: [[credentialsId: 'Multiple-repos-commits-with-one-pipeline',
+        //             url: 'https://github.com/Rajugithub1989/Common-Pipeline.git']]])
+        //             load 'common-pipeline.groovy'
+        //     }
+        // }
 
         stage('Checkout java-hello-world-webapp-1') {
             steps {
