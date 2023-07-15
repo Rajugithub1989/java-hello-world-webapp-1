@@ -66,6 +66,7 @@ pipeline {
         //echo "Output: ${output}"
         echo "Job name: ${JOB_NAME}" 
         echo "Build number: ${BUILD_NUMBER}"
+        echo "Build URL: ${BUILD_URL}" 
         //echo "Duration: ${duration}" 
 
 
