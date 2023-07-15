@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'maven_home'
-    }
+    //tools {
+    //    maven 'maven_home'
+    //}
 
     stages {
         stage('Load common-pipeline script') {
