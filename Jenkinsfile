@@ -63,7 +63,7 @@ pipeline {
     post {
     always {
         //echo "Result: ${result}" 
-        echo "Output: ${output}"
+        //echo "Output: ${output}"
         echo "Job name: ${JOB_NAME}" 
         echo "Build number: ${BUILD_NUMBER}"
         //echo "Duration: ${duration}" 
