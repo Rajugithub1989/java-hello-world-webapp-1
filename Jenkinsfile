@@ -62,10 +62,11 @@ pipeline {
 
     post {
     always {
-        echo "Result: ${result}" 
+        //echo "Result: ${result}" 
+        echo "Output: ${output}"
         echo "Job name: ${JOB_NAME}" 
         echo "Build number: ${BUILD_NUMBER}"
-        echo "Duration: ${duration}" 
+        //echo "Duration: ${duration}" 
 
 
        // archiveArtifacts artifacts: 'job_data.txt', onlyIfSuccessful: false
