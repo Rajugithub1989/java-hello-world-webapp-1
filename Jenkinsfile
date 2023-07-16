@@ -1,4 +1,4 @@
-//def modules = [:]
+def modules = [:]
 pipeline {
     agent any
 
