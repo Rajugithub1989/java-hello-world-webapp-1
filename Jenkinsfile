@@ -35,13 +35,14 @@ pipeline {
         }
 
         stage('Call groovy script') {
-
+            steps{
             sh 'ls -lhrt'
 
             def rootDir = pwd()
             println("Current Directory: " + rootDir)
             def externalMethod = load "${rootDir}/common-pipeline.groovy"
             externalMethod.firstTest()
+            }
         }
 
 // //         stage('Build-all-targets-in-parallel'){
