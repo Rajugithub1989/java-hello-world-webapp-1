@@ -35,7 +35,8 @@ pipeline {
         }
 
         stage('Call groovy script') {
-            steps{
+            steps {
+                script {
             sh 'ls -lhrt'
 
             def rootDir = pwd()
@@ -44,7 +45,7 @@ pipeline {
             externalMethod.firstTest()
             }
         }
-
+    }
 // //         stage('Build-all-targets-in-parallel'){
 
 // //           //def workspace = pwd()
