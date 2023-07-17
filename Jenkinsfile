@@ -25,14 +25,14 @@ pipeline {
         //      }
         //  }
 
-        stage('Checkout java-hello-world-webapp-1') {
-            steps {
-                checkout([$class: 'GitSCM',
-                    branches: [[name: 'master']],
-                    userRemoteConfigs: [[credentialsId: 'Multiple-repos-commits-with-one-pipeline',
-                    url: 'https://github.com/Rajugithub1989/java-hello-world-webapp-1.git']]])
-            }
-        }
+        // // stage('Checkout java-hello-world-webapp-1') {
+        // //     steps {
+        // //         checkout([$class: 'GitSCM',
+        // //             branches: [[name: 'master']],
+        // //             userRemoteConfigs: [[credentialsId: 'Multiple-repos-commits-with-one-pipeline',
+        // //             url: 'https://github.com/Rajugithub1989/java-hello-world-webapp-1.git']]])
+        // //     }
+        // // }
 
         stage('Call groovy script') {
             steps {
@@ -42,7 +42,7 @@ pipeline {
             def rootDir = pwd()
             println("Current Directory: " + rootDir)
             def externalMethod = load "${rootDir}/common-pipeline.groovy"
-            externalMethod.firstTest()
+            externalMethod.get_project_code()
             }
         }
     }
@@ -82,18 +82,18 @@ pipeline {
         //     }
         // }
 
-    // //    stage('Build and Test') {
-    // //         steps {
+        stage('Build and Test') {
+             steps {
     // //             dir('java-hello-world-webapp-1') {
     // //                 checkout([$class: 'GitSCM',
     // //                           branches: [[name: 'master']],
     // //                           userRemoteConfigs: [[credentialsId: 'Multiple-repos-commits-with-one-pipeline',
     // //                                                url: 'https://github.com/Rajugithub1989/java-hello-world-webapp-1.git']]])
 
-    // //                 sh 'mvn clean test -PrunIndividualSuite -DsuiteXmlFile=Functional.xml -Denv=qa'
+                     sh 'mvn clean test -PrunIndividualSuite -DsuiteXmlFile=Functional.xml -Denv=qa'
 
-    // //             }
-    // //         }
+                 }
+             }
     // //     }
 
 
