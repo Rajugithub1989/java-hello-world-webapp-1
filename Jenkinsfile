@@ -36,8 +36,8 @@ pipeline {
 
         stage('Build-all-targets-in-parallel'){
 
-          def workspace = pwd()
-          echo workspace
+          //def workspace = pwd()
+          //echo workspace
           parallel(
             'first-parallel-target' :
              {
