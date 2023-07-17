@@ -34,21 +34,31 @@ pipeline {
             }
         }
 
-        stage('Build-all-targets-in-parallel'){
+        stage('Call groovy script') {
 
-          //def workspace = pwd()
-          //echo workspace
-          parallel(
-            'first-parallel-target' :
-             {
-                // Load the file 'file1.groovy' from the current directory, into a variable called "externalMethod".
-                //callScriptOne()
-                def externalMethod = load("common-pipeline.groovy")
-                // Call the method we defined in file1.
-                externalMethod.firstTest()
-             }
-          )
- }
+            sh 'ls -lhrt'
+
+            def rootDir = pwd()
+            println("Current Directory: " + rootDir)
+            def externalMethod = load "${rootDir}/common-pipeline.groovy"
+            externalMethod.firstTest()
+        }
+
+// //         stage('Build-all-targets-in-parallel'){
+
+// //           //def workspace = pwd()
+// //           //echo workspace
+// //           parallel(
+// //             'first-parallel-target' :
+// //              {
+// //                 // Load the file 'file1.groovy' from the current directory, into a variable called "externalMethod".
+// //                 //callScriptOne()
+// //                 def externalMethod = load("common-pipeline.groovy")
+// //                 // Call the method we defined in file1.
+// //                 externalMethod.firstTest()
+// //              }
+// //           )
+// //  }
 
         // Test
         // stage('Checkout kine-alert-deliver') {
