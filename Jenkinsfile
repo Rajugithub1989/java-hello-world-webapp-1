@@ -42,7 +42,7 @@ pipeline {
             def rootDir = pwd()
             println("Current Directory: " + rootDir)
             def externalMethod = load "${rootDir}/common-pipeline.groovy"
-            externalMethod.get_project_code()
+            externalMethod.get_project_code(repo_url)
             }
         }
     }
