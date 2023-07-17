@@ -22,7 +22,7 @@
 // //     stage('Cleanup workspace'){
 // // deleteDir()
 // // }
-// // }
+// //
 
 
 def firstTest(){
