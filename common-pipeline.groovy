@@ -2,7 +2,7 @@
 
 def firstTest(){
 
-  node('test-node'){
+  //node('test-node'){
 
     stage('build repo 1'){    
       echo "Building Repo 1"
@@ -18,7 +18,7 @@ def firstTest(){
                  }
              }
          }
-    }
+    //}
 
     stage('Cleanup workspace'){
 deleteDir()
