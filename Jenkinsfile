@@ -7,23 +7,23 @@ pipeline {
     //}
 
     stages {
-        //  stage('Load common-pipeline script') {
-        //      steps {
-        //          script{
-        //              modules.first = load "common-pipeline.groovy"
-        //              modules.second = load "second.groovy"
-        //              modules.second.init(modules.first)
-        //              modules.first.test1()
-        //              modules.second.test2()
-        //              //modules.third.test3()
-        //         }
+        //   stage('Load common-pipeline script') {
+        //       steps {
+        // //          script{
+        // //              modules.first = load "common-pipeline.groovy"
+        // //              modules.second = load "second.groovy"
+        // //              modules.second.init(modules.first)
+        // //              modules.first.test1()
+        // //              modules.second.test2()
+        // //              //modules.third.test3()
+        // //         }
         //         checkout([$class: 'GitSCM',
         //             branches: [[name: 'master']],
         //             userRemoteConfigs: [[credentialsId: 'Multiple-repos-commits-with-one-pipeline',
         //             url: 'https://github.com/Rajugithub1989/Common-Pipeline.git']]])
         //             load 'common-pipeline.groovy'
-             //}
-         //}
+        //      }
+        //  }
 
         stage('Checkout java-hello-world-webapp-1') {
             steps {
@@ -33,6 +33,22 @@ pipeline {
                     url: 'https://github.com/Rajugithub1989/java-hello-world-webapp-1.git']]])
             }
         }
+
+        stage('Build-all-targets-in-parallel'){
+
+          def workspace = pwd()
+          echo workspace
+          parallel(
+            'first-parallel-target' :
+             {
+                // Load the file 'file1.groovy' from the current directory, into a variable called "externalMethod".
+                //callScriptOne()
+                def externalMethod = load("common-pipeline.groovy")
+                // Call the method we defined in file1.
+                externalMethod.firstTest()
+             }
+          )
+ }
 
         // Test
         // stage('Checkout kine-alert-deliver') {
@@ -54,19 +70,22 @@ pipeline {
         //     }
         // }
 
-       stage('Build and Test') {
-            steps {
-                dir('java-hello-world-webapp-1') {
-                    checkout([$class: 'GitSCM',
-                              branches: [[name: 'master']],
-                              userRemoteConfigs: [[credentialsId: 'Multiple-repos-commits-with-one-pipeline',
-                                                   url: 'https://github.com/Rajugithub1989/java-hello-world-webapp-1.git']]])
+    // //    stage('Build and Test') {
+    // //         steps {
+    // //             dir('java-hello-world-webapp-1') {
+    // //                 checkout([$class: 'GitSCM',
+    // //                           branches: [[name: 'master']],
+    // //                           userRemoteConfigs: [[credentialsId: 'Multiple-repos-commits-with-one-pipeline',
+    // //                                                url: 'https://github.com/Rajugithub1989/java-hello-world-webapp-1.git']]])
 
-                    sh 'mvn clean test -PrunIndividualSuite -DsuiteXmlFile=Functional.xml -Denv=qa'
+    // //                 sh 'mvn clean test -PrunIndividualSuite -DsuiteXmlFile=Functional.xml -Denv=qa'
 
-                }
-            }
-        }
+    // //             }
+    // //         }
+    // //     }
+
+
+    
     }
 
     post {
