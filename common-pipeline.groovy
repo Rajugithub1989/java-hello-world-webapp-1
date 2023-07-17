@@ -4,20 +4,36 @@ def firstTest(){
 
   //node('test-node'){
 
-    stage('build repo 1'){    
-      echo "Building Repo 1"
-         steps {
-             dir('java-hello-world-webapp-1') {
-                 checkout([$class: 'GitSCM',
-                           branches: [[name: 'master']],
-                           userRemoteConfigs: [[credentialsId: 'Multiple-repos-commits-with-one-pipeline',
-                                                url: 'https://github.com/Rajugithub1989/java-hello-world-webapp-1.git']]])
+    // stage('build repo 1'){    
+    //   echo "Building Repo 1"
+    //      steps {
+    //          dir('java-hello-world-webapp-1') {
+    //              checkout([$class: 'GitSCM',
+    //                        branches: [[name: 'master']],
+    //                        userRemoteConfigs: [[credentialsId: 'Multiple-repos-commits-with-one-pipeline',
+    //                                             url: 'https://github.com/Rajugithub1989/java-hello-world-webapp-1.git']]])
 
-                     sh 'mvn clean test -PrunIndividualSuite -DsuiteXmlFile=Functional.xml -Denv=qa'
+    //                  sh 'mvn clean test -PrunIndividualSuite -DsuiteXmlFile=Functional.xml -Denv=qa'
 
-                 }
-             }
-         }
+    //              }
+    //          }
+    //      }
+
+    stage('build repo 1') {
+        try{
+            
+            checkout([
+                    $class: 'GitSCM',
+                    //poll: true,
+                    branches: [[name: 'master']],
+                    userRemoteConfigs: [[url: 'https://github.com/Rajugithub1989/java-hello-world-webapp-1.git', credentialsId: 'Multiple-repos-commits-with-one-pipeline']]
+                    
+                ])
+        }catch(err){
+            echo "Stage : '${env.STAGE_NAME}' Failed : "+err.toString()
+            throw err
+        }
+   }
     //}
 
     stage('Cleanup workspace'){
