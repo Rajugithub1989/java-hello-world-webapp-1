@@ -1,4 +1,4 @@
-def modules = [:]
+//def modules = [:]
 pipeline {
     agent any
 
@@ -7,23 +7,23 @@ pipeline {
     //}
 
     stages {
-         stage('Load common-pipeline script') {
-             steps {
-                 script{
-                     modules.first = load "common-pipeline.groovy"
-                     modules.second = load "second.groovy"
-                     modules.second.init(modules.first)
-                     modules.first.test1()
-                     modules.second.test2()
-                     //modules.third.test3()
-                }
+        //  stage('Load common-pipeline script') {
+        //      steps {
+        //          script{
+        //              modules.first = load "common-pipeline.groovy"
+        //              modules.second = load "second.groovy"
+        //              modules.second.init(modules.first)
+        //              modules.first.test1()
+        //              modules.second.test2()
+        //              //modules.third.test3()
+        //         }
         //         checkout([$class: 'GitSCM',
         //             branches: [[name: 'master']],
         //             userRemoteConfigs: [[credentialsId: 'Multiple-repos-commits-with-one-pipeline',
         //             url: 'https://github.com/Rajugithub1989/Common-Pipeline.git']]])
         //             load 'common-pipeline.groovy'
-             }
-         }
+             //}
+         //}
 
         stage('Checkout java-hello-world-webapp-1') {
             steps {
